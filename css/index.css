@@ -1625,7 +1625,7 @@ canvas:not(#ribbon-canvas),
   }
 }
 :root {
-  --global-font-size: 14px;
+  --global-font-size: 16px;
   --global-bg: #fff;
   --font-color: #4c4948;
   --hr-border: #a4d8fa;
@@ -2015,7 +2015,7 @@ figure.highlight pre .javascript .function {
 }
 .container pre,
 .container code {
-  font-size: 85%;
+  font-size: 14px;
   font-family: consolas, Menlo, monospace, 'PingFang SC', 'Microsoft JhengHei', sans-serif !important;
   border-radius: 6px;
 }
@@ -2045,7 +2045,7 @@ figure.highlight pre .javascript .function {
 .container figure.highlight figcaption,
 .container figure.highlight .caption {
   padding: 6px 0 2px 14px;
-  font-size: 85%;
+  font-size: 14px;
   line-height: 1em;
 }
 .container figure.highlight figcaption a,
@@ -2091,7 +2091,7 @@ figure.highlight pre .javascript .function {
   height: 2.15em;
   background: var(--hltools-bg);
   color: var(--hltools-color);
-  font-size: 85%;
+  font-size: 14px;
   margin-right: auto;
 }
 .container .highlight-tools > * {
@@ -4543,6 +4543,12 @@ figure.highlight pre .javascript .function {
   display: -ms-flexbox;
   display: box;
   display: flex;
+  -webkit-box-pack: center;
+  -moz-box-pack: center;
+  -o-box-pack: center;
+  -ms-flex-pack: center;
+  -webkit-justify-content: center;
+  justify-content: center;
   -webkit-box-align: center;
   -moz-box-align: center;
   -o-box-align: center;
@@ -4553,6 +4559,7 @@ figure.highlight pre .javascript .function {
   width: 100%;
   height: 60px;
   font-size: 1.3em;
+  font-family: 'Comic Sans MS', '幼圆', 'Yuanti SC', cursive, sans-serif;
   opacity: 0;
   -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
   filter: alpha(opacity=0);
@@ -4573,13 +4580,15 @@ figure.highlight pre .javascript .function {
   filter: none;
 }
 #nav #blog-info {
+  position: absolute;
+  left: 36px;
   -webkit-box-flex: 1;
   -moz-box-flex: 1;
   -o-box-flex: 1;
   box-flex: 1;
-  -webkit-flex: 1;
-  -ms-flex: 1;
-  flex: 1;
+  -webkit-flex: 0;
+  -ms-flex: 0;
+  flex: 0;
   color: var(--light-grey);
 }
 #nav #blog-info .site-icon {
@@ -4611,7 +4620,9 @@ figure.highlight pre .javascript .function {
   font-weight: bold;
 }
 #nav .menus_items {
-  display: inline;
+  display: inline-block;
+  margin: 0 auto;
+  text-align: center;
 }
 #nav .menus_items .menus_item {
   position: relative;
