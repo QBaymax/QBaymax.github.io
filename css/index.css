@@ -4559,7 +4559,6 @@ figure.highlight pre .javascript .function {
   width: 100%;
   height: 60px;
   font-size: 1.3em;
-  font-family: 'Comic Sans MS', '幼圆', 'Yuanti SC', cursive, sans-serif;
   opacity: 0;
   -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
   filter: alpha(opacity=0);
