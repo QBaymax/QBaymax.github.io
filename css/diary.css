@@ -13,19 +13,30 @@
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
 } 
  
+/* 修改日记标题字体大小 */
+.diary-item .article-title {
+  font-size: 1.2rem !important; /* 默认可能是1.25rem，调整为1.5rem */
+  font-weight: 600 !important;
+}
+
 /* 内容区域 */ 
 .diary-item .content { 
     line-height: 1.7; 
     color: #343a3b; 
-    margin-bottom: 1rem; 
-    height: auto; 
+    margin-bottom: 0.2rem; 
     max-height: none; 
+    min-height: 60px; /* 设置最小高度，避免内容太少时按钮太靠下 */
     overflow: visible; 
 } 
 
+
 /* 摘要内容 */ 
 .content-excerpt { 
+    /* min-height: 100px; */
+    max-height: none; 
+    overflow: hidden;
     display: block; 
+    margin-bottom: 4rem; 
 } 
 
 /* 完整内容动画展开区域 */ 
@@ -35,6 +46,7 @@
     overflow: hidden; 
     transform: translateY(10px); 
     transition: max-height 0.4s ease, opacity 0.4s ease, transform 0.4s ease; 
+    margin-bottom: 2rem; 
 } 
 
 .content-full.active { 
@@ -43,27 +55,34 @@
     transform: translateY(0); 
 } 
 
-/* 阅读更多按钮 */ 
 .diary-read-more { 
     display: inline-flex; 
     align-items: center; 
-    margin-top: 1rem; 
     padding: 0.5rem 1rem; 
     font-weight: 500; 
     color: #67c23a; 
-    background: rgba(103, 194, 58, 0.1); 
-    border-radius: 4px; 
+    background: transparent !important;
+    border: none !important;
     text-decoration: none; 
     cursor: pointer; 
     transition: all 0.3s ease; 
+    position: absolute; /* 使用绝对定位 */
+    bottom: 0.0rem; /* 距离底部0.15rem */
+    right: 1.0rem; /* 距离右侧1.0rem */
+    z-index: 10; /* 确保在最上层 */
+    margin-top: 0 !important; /* 移除之前的margin */
 } 
 
 .diary-read-more:hover { 
-    color: #fff; 
-    background: #67c23a; 
-    transform: translateY(-1px); 
-    box-shadow: 0 4px 12px rgba(103, 194, 58, 0.3); 
+    color: #8ddb66; 
+    /* background: #67c23a; */
+    /* background: transparent; */
+    /* transform: translateY(-1px);  */
+    /* box-shadow: 0 4px 12px rgba(103, 194, 58, 0.3);  */
+    /* box-shadow: transparent; */
+    text-decoration: underline;
 } 
+
 
 /* 内容排版优化 */ 
 .content-full p, 
