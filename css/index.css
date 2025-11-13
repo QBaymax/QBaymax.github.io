@@ -2385,6 +2385,11 @@ figure.highlight pre .javascript .function {
   background-size: cover;
   background-position: center center;
 }
+@supports (background: url("/img/MZX_background.webp")) {
+  #body-wrap {
+    background-image: url("/img/MZX_background.webp");
+  }
+}
 .layout {
   display: -webkit-box;
   display: -moz-box;
@@ -2770,6 +2775,11 @@ figure.highlight pre .javascript .function {
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center center;
+}
+@supports (background: url("/img/default_background.webp")) {
+  #obody-wrap {
+    background-image: url("/img/default_background.webp");
+  }
 }
 .olayout {
   display: -webkit-box;
