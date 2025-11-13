@@ -38,12 +38,11 @@
   align-items: center;
   font-weight: 600;
   font-size: 1.2rem;
-  color: #343a3b;
 }
 
 .author-time {
   font-size: 0.75rem;
-  color: #888;
+  /* color: #888; */
 }
 
 .author-meta {
@@ -120,7 +119,6 @@
 .title-meta .title-content {
   font-size: 1.2rem !important; /* 默认可能是1.25rem，调整为1.5rem */
   font-weight: 600 !important;
-  color: #343a3b; 
 }
 
 .diary-title::before {
@@ -182,7 +180,6 @@
 /* 内容区域 */ 
 .diary-item .content { 
     line-height: 1.7; 
-    color: #343a3b; 
     margin-bottom: 0.75rem; 
     max-height: none; 
     min-height: 60px; /* 设置最小高度，避免内容太少时按钮太靠下 */

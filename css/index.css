@@ -2403,7 +2403,9 @@ figure.highlight pre .javascript .function {
   padding: 40px 40px;
   max-width: 1200px;
   width: 100%;
-  background: rgba(255,255,255,0.6);
+  opacity: 0.8;
+  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=80)";
+  filter: alpha(opacity=80);
 }
 @media screen and (max-width: 900px) {
   .layout {
@@ -2787,7 +2789,9 @@ figure.highlight pre .javascript .function {
   padding: 40px 40px;
   max-width: 1200px;
   width: 100%;
-  background: rgba(255,255,255,0.6);
+  opacity: 0.8;
+  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=80)";
+  filter: alpha(opacity=80);
 }
 @media screen and (max-width: 900px) {
   .olayout {
@@ -2814,7 +2818,6 @@ figure.highlight pre .javascript .function {
   align-self: flex-start;
   -ms-flex-item-align: start;
   padding: 50px 40px;
-  background: rgba(255,255,255,0.7);
 }
 @media screen and (max-width: 768px) {
   .olayout > div:first-child:not(.nc) {
