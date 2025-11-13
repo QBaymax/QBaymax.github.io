@@ -1,7 +1,7 @@
 /* 日记卡片容器 */ 
 .diary-item { 
-    margin: 0.625rem 0; 
-    padding: 1.25rem 0.0rem; 
+    margin: 0.0rem 0; 
+    padding: 1.0rem 1.25rem; 
     border-radius: 0.6rem; 
     background-color: #fff; 
     box-shadow: 0 0 12px rgba(0, 0, 0, 0.04); 
@@ -17,7 +17,7 @@
 .diary-author {
   display: flex;
   align-items: center;
-  margin-bottom: 0.5rem;
+  margin-bottom: 0.0rem;
   gap: 0.75rem;
 }
 
@@ -34,13 +34,15 @@
 }
 
 .author-name {
+  display: flex;
+  align-items: center;
   font-weight: 600;
   font-size: 1.2rem;
   color: #343a3b;
 }
 
 .author-time {
-  font-size: 0.85rem;
+  font-size: 0.75rem;
   color: #888;
 }
 
@@ -95,18 +97,93 @@
   color: #aaa;
 } */
 
-
 /* 修改日记标题字体大小 */
-.diary-item .article-title {
+.diary-item .diary-title {
+  display: inline-flex;
+  flex-direction: row;
+  position: relative;
+  height: 30px;
+  margin-bottom: 2px;
+  margin-top: 2px;
+  align-items: center;
+  gap: 2px;
+}
+
+.diary-title .title-meta {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 2px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.title-meta .title-content {
   font-size: 1.2rem !important; /* 默认可能是1.25rem，调整为1.5rem */
   font-weight: 600 !important;
+  color: #343a3b; 
 }
+
+.diary-title::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 4px;
+  bottom: 4px;
+  width: 3px;
+  background-color: #67c23a;
+  opacity: 0;
+  transform: scaleY(0);
+  transition: all 0.3s ease;
+  border-radius: 2px;
+  margin-right: 8px;
+}
+
+.title-meta::before {
+  content: "";
+  position: absolute;
+  right: 0;
+  bottom: 6px;
+  height: 10px;
+  width: 100%;
+  background-color: #67c23a;
+  opacity: 0.0;
+  transform: scaleX(0);
+  /* transition: all 0.3s ease; */
+  border-radius: 2px;
+}
+
+.diary-title:hover::before {
+  opacity: 1;
+  transform: scaleY(1);
+}
+
+.title-meta:hover {
+  transform: translateX(4px);
+}
+
+.title-meta:hover::before {
+  opacity: 0.3;
+  transform: scaleY(1);
+}
+
+
+
+/* 文章的类别，时间，标签等可以放在这里 */
+.diary-item .diary-meta-wrap {
+  display: flex;
+  align-items: center;
+  margin-bottom: 0.0rem;
+  gap: 0.5rem;
+}
+
+
+
 
 /* 内容区域 */ 
 .diary-item .content { 
     line-height: 1.7; 
     color: #343a3b; 
-    margin-bottom: 0.2rem; 
+    margin-bottom: 0.75rem; 
     max-height: none; 
     min-height: 60px; /* 设置最小高度，避免内容太少时按钮太靠下 */
     overflow: visible; 
@@ -119,7 +196,7 @@
     max-height: none; 
     overflow: hidden;
     display: block; 
-    margin-bottom: 4rem; 
+    margin-bottom: 2rem; 
 } 
 
 /* 完整内容动画展开区域 */ 
@@ -141,7 +218,7 @@
 .diary-read-more { 
     display: inline-flex; 
     align-items: center; 
-    padding: 0.5rem 1rem; 
+    padding: 0.0rem 1rem; 
     font-weight: 500; 
     color: #67c23a; 
     background: transparent !important;
@@ -150,7 +227,7 @@
     cursor: pointer; 
     transition: all 0.3s ease; 
     position: absolute; /* 使用绝对定位 */
-    bottom: 0.0rem; /* 距离底部0.15rem */
+    bottom: 1.0rem; /* 距离底部0.15rem */
     right: 1.0rem; /* 距离右侧1.0rem */
     z-index: 10; /* 确保在最上层 */
     margin-top: 0 !important; /* 移除之前的margin */
