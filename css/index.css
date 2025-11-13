@@ -222,6 +222,7 @@ template {
 .cardHover,
 .layout > div:first-child:not(.nc),
 #recent-posts .recent-post-item,
+.olayout > div:first-child:not(.nc),
 #article-container .shuoshuo-item,
 #aside-content .card-widget,
 .layout .pagination > *:not(.space) {
@@ -238,6 +239,7 @@ template {
 .cardHover:hover,
 .layout > div:first-child:not(.nc):hover,
 #recent-posts .recent-post-item:hover,
+.olayout > div:first-child:not(.nc):hover,
 #article-container .shuoshuo-item:hover,
 #aside-content .card-widget:hover,
 .layout .pagination > *:not(.space):hover {
@@ -2371,6 +2373,10 @@ figure.highlight pre .javascript .function {
   -ms-flex-direction: column;
   flex-direction: column;
   min-height: 100vh;
+  background: url("/img/MZX_background.jpg");
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 .layout {
   display: -webkit-box;
@@ -2386,10 +2392,11 @@ figure.highlight pre .javascript .function {
   -webkit-flex: 1 auto;
   -ms-flex: 1 auto;
   flex: 1 auto;
-  margin: 0 auto;
-  padding: 40px 15px;
-  max-width: 1200px;
+  margin: 0 0;
+  padding: 40px 100px;
+  max-width: none;
   width: 100%;
+  background: rgba(255,255,255,0.6);
 }
 @media screen and (max-width: 900px) {
   .layout {
@@ -2728,6 +2735,113 @@ figure.highlight pre .javascript .function {
 #recent-posts .recent-post-item >.recent-post-info > .content {
   -webkit-line-clamp: 2;
   word-break: break-word;
+}
+#obody-wrap {
+  display: -webkit-box;
+  display: -moz-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: box;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -moz-box-orient: vertical;
+  -o-box-orient: vertical;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  min-height: 100vh;
+  background: url("/img/default_background.jpg");
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+.olayout {
+  display: -webkit-box;
+  display: -moz-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: box;
+  display: flex;
+  -webkit-box-flex: 1;
+  -moz-box-flex: 1;
+  -o-box-flex: 1;
+  box-flex: 1;
+  -webkit-flex: 1 auto;
+  -ms-flex: 1 auto;
+  flex: 1 auto;
+  margin: 0 0;
+  padding: 40px 100px;
+  max-width: none;
+  width: 100%;
+  background: rgba(255,255,255,0.6);
+}
+@media screen and (max-width: 900px) {
+  .olayout {
+    -webkit-box-orient: vertical;
+    -moz-box-orient: vertical;
+    -o-box-orient: vertical;
+    -webkit-flex-direction: column;
+    -ms-flex-direction: column;
+    flex-direction: column;
+  }
+}
+@media screen and (max-width: 768px) {
+  .olayout {
+    padding: 20px 5px;
+  }
+}
+@media screen and (min-width: 2000px) {
+  .olayout {
+    max-width: 60%;
+  }
+}
+.olayout > div:first-child:not(.nc) {
+  -webkit-align-self: flex-start;
+  align-self: flex-start;
+  -ms-flex-item-align: start;
+  padding: 50px 40px;
+  background: rgba(255,255,255,0.7);
+}
+@media screen and (max-width: 768px) {
+  .olayout > div:first-child:not(.nc) {
+    padding: 36px 14px;
+  }
+}
+.olayout > div:first-child {
+  width: 74%;
+  -webkit-transition: all 0.3s;
+  -moz-transition: all 0.3s;
+  -o-transition: all 0.3s;
+  -ms-transition: all 0.3s;
+  transition: all 0.3s;
+}
+@media screen and (max-width: 900px) {
+  .olayout > div:first-child {
+    width: 100% !important;
+  }
+}
+.olayout.hide-aside {
+  max-width: 1000px;
+}
+@media screen and (min-width: 2000px) {
+  .olayout.hide-aside {
+    max-width: 1300px;
+  }
+}
+.olayout.hide-aside > div {
+  width: 100% !important;
+}
+.apple #page-header.full_page {
+  background-attachment: scroll !important;
+}
+.apple .recent-post-item,
+.apple .avatar-img,
+.apple .flink-item-icon {
+  -webkit-transform: translateZ(0);
+  -moz-transform: translateZ(0);
+  -o-transform: translateZ(0);
+  -ms-transform: translateZ(0);
+  transform: translateZ(0);
 }
 #article-container .shuoshuo-item {
   margin-bottom: 20px;
@@ -4248,6 +4362,8 @@ figure.highlight pre .javascript .function {
 #page-header.full_page {
   height: 100vh;
   background-attachment: fixed;
+  background-color: transparent;
+  background-image: none;
 }
 #page-header.full_page #site-info {
   position: absolute;
@@ -4310,6 +4426,8 @@ figure.highlight pre .javascript .function {
   font-size: 20px;
 }
 #page-header.not-home-page {
+  background-color: transparent;
+  background-image: none;
   height: 400px;
 }
 @media screen and (max-width: 768px) {
