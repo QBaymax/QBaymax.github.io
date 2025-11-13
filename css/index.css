@@ -2372,6 +2372,12 @@ figure.highlight pre .javascript .function {
   -webkit-flex-direction: column;
   -ms-flex-direction: column;
   flex-direction: column;
+  -webkit-box-align: center;
+  -moz-box-align: center;
+  -o-box-align: center;
+  -ms-flex-align: center;
+  -webkit-align-items: center;
+  align-items: center;
   min-height: 100vh;
   background: url("/img/MZX_background.jpg");
   background-attachment: fixed;
@@ -2394,8 +2400,8 @@ figure.highlight pre .javascript .function {
   -ms-flex: 1 auto;
   flex: 1 auto;
   margin: 0 0;
-  padding: 40px 400px;
-  max-width: none;
+  padding: 40px 40px;
+  max-width: 1200px;
   width: 100%;
   background: rgba(255,255,255,0.6);
 }
@@ -2750,6 +2756,12 @@ figure.highlight pre .javascript .function {
   -webkit-flex-direction: column;
   -ms-flex-direction: column;
   flex-direction: column;
+  -webkit-box-align: center;
+  -moz-box-align: center;
+  -o-box-align: center;
+  -ms-flex-align: center;
+  -webkit-align-items: center;
+  align-items: center;
   min-height: 100vh;
   background: url("/img/default_background.jpg");
   background-attachment: fixed;
@@ -2772,8 +2784,8 @@ figure.highlight pre .javascript .function {
   -ms-flex: 1 auto;
   flex: 1 auto;
   margin: 0 0;
-  padding: 40px 400px;
-  max-width: none;
+  padding: 40px 40px;
+  max-width: 1200px;
   width: 100%;
   background: rgba(255,255,255,0.6);
 }
@@ -4245,10 +4257,10 @@ figure.highlight pre .javascript .function {
 }
 #footer {
   position: relative;
-  background-color: #49b1f5;
   background-attachment: scroll;
   background-position: bottom;
   background-size: cover;
+  background-color: transparent;
 }
 #footer > * {
   position: relative;
@@ -4449,6 +4461,8 @@ figure.highlight pre .javascript .function {
   }
 }
 #page-header.post-bg {
+  background-color: transparent;
+  background-image: none;
   height: 400px;
 }
 @media screen and (max-width: 768px) {
