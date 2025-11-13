@@ -2377,6 +2377,7 @@ figure.highlight pre .javascript .function {
   background-attachment: fixed;
   background-repeat: no-repeat;
   background-size: cover;
+  background-position: center center;
 }
 .layout {
   display: -webkit-box;
@@ -2754,6 +2755,7 @@ figure.highlight pre .javascript .function {
   background-attachment: fixed;
   background-repeat: no-repeat;
   background-size: cover;
+  background-position: center center;
 }
 .olayout {
   display: -webkit-box;
