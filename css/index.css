@@ -2394,7 +2394,7 @@ figure.highlight pre .javascript .function {
   -ms-flex: 1 auto;
   flex: 1 auto;
   margin: 0 0;
-  padding: 40px 100px;
+  padding: 40px 400px;
   max-width: none;
   width: 100%;
   background: rgba(255,255,255,0.6);
@@ -2772,7 +2772,7 @@ figure.highlight pre .javascript .function {
   -ms-flex: 1 auto;
   flex: 1 auto;
   margin: 0 0;
-  padding: 40px 100px;
+  padding: 40px 400px;
   max-width: none;
   width: 100%;
   background: rgba(255,255,255,0.6);
