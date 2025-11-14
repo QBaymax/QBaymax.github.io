@@ -1,0 +1,133 @@
+mixin diaryCalendar()
+  //- 数据处理部分
+  - const allPosts = site.posts.data
+  - const postStats = {}
+  - let totalPosts = 0
+  
+  - allPosts.forEach((post) => {
+  -   if (post && post.date) {
+  -     const dateStr = post.date.format('YYYY-MM-DD')
+  -     postStats[dateStr] = (postStats[dateStr] || 0) + 1
+  -     totalPosts++
+  -   }
+  - })
+  
+  //- 计算起始日期 (当前日期往前推一年，并调整到网格的a/b位置)
+  - const MS_PER_DAY = 24 * 60 * 60 * 1000
+  - const anchorPosition = 2 / 3  // a/b位置比例
+  - const today = new Date()
+  - const startDate = new Date(today.getFullYear() - 1, today.getMonth(), today.getDate())
+  - const daysToAdjust = Math.floor(367 / 2 - (today - startDate) / MS_PER_DAY * 2 * (1 - anchorPosition))
+  - startDate.setDate(startDate.getDate() - daysToAdjust)
+  
+  //- 确保起始日期是周日（GitHub日历从周日开始）
+  - const startDayOfWeek = startDate.getDay()
+  - console.log("Adjusted Start Date:", startDate.toISOString().split('T')[0])
+  - console.log("Start Day of Week:", startDayOfWeek)
+  - startDate.setDate(startDate.getDate() - startDayOfWeek + 1)
+
+  //- 计算月份标签
+  - const startMonth = startDate.getMonth() + 1
+  
+  //- 计算当前日期在月份中的位置（上中下旬）
+  - const currentDay = today.getDate()
+  - let monthOffset = 0
+  - if (currentDay <= 10) {
+  -   monthOffset = -15
+  - } else if (currentDay <= 20) {
+  -   monthOffset = 0
+  - } else {
+  -   monthOffset = 15
+  - }
+
+  //- 引入CSS文件
+  link(rel="stylesheet", href=url_for("/css/calendar.css"))
+
+  .diary-calendar
+    .calendar-header
+      h2 文章贡献日历
+      .calendar-stats
+        span 总共 #{totalPosts} 篇文章，覆盖 #{Object.keys(postStats).length} 天
+    
+    .calendar-scroll-container
+      .calendar-months
+        //- 月份标签
+        - const startPX = 20
+        - const gapPx = 65
+        .month-label(style=`left: ${startPX + 0 *gapPx + monthOffset}px`) #{startMonth}月
+        .month-label(style=`left: ${startPX + 1 *gapPx + monthOffset}px`) #{(startMonth % 12) + 1}月
+        .month-label(style=`left: ${startPX + 2 *gapPx + monthOffset}px`) #{((startMonth + 1) % 12) + 1}月
+        .month-label(style=`left: ${startPX + 3 *gapPx + monthOffset}px`) #{((startMonth + 2) % 12) + 1}月
+        .month-label(style=`left: ${startPX + 4 *gapPx + monthOffset}px`) #{((startMonth + 3) % 12) + 1}月
+        .month-label(style=`left: ${startPX + 5 *gapPx + monthOffset}px`) #{((startMonth + 4) % 12) + 1}月
+        .month-label(style=`left: ${startPX + 6 *gapPx + monthOffset}px`) #{((startMonth + 5) % 12) + 1}月
+        .month-label(style=`left: ${startPX + 7 *gapPx + monthOffset}px`) #{((startMonth + 6) % 12) + 1}月
+        .month-label(style=`left: ${startPX + 8 *gapPx + monthOffset}px`) #{((startMonth + 7) % 12) + 1}月
+        .month-label(style=`left: ${startPX + 9 *gapPx + monthOffset}px`) #{((startMonth + 8) % 12) + 1}月
+        .month-label(style=`left: ${startPX + 10*gapPx + monthOffset}px`) #{((startMonth + 9) % 12) + 1}月
+        .month-label(style=`left: ${startPX + 11*gapPx + monthOffset}px`) #{((startMonth + 10) % 12) + 1}月
+        //- .month-label(style=`left: ${startPX + 12*gapPx + monthOffset}px`) #{((startMonth + 11) % 12) + 1}月
+      
+      .canvas
+        .calendar-weekdays
+          //- 修正星期标签顺序（GitHub从周日开始）
+          .calendar-weekday 
+          .calendar-weekday 一
+          .calendar-weekday 
+          .calendar-weekday 三
+          .calendar-weekday 
+          .calendar-weekday 五
+          .calendar-weekday 
+          
+        .calendar-wrapper
+          .calendar-grid
+            //- 生成371个格子（53周）
+            - let currentDate = new Date(startDate)
+            - const totalDays = 53 * 7
+            
+            - for (let i = 0; i < totalDays; i++)
+              - const dateStr = currentDate.toISOString().split('T')[0]
+              - const count = postStats[dateStr] || 0
+              - const isInRange = currentDate <= new Date(today.getTime() + 24 * 60 * 60 * 1000)
+              - 
+              if (isInRange)
+                .calendar-day(
+                  data-date=dateStr,
+                  data-count=count,
+                  title=`${dateStr}: ${count}篇文章`
+                )
+              else
+                .calendar-day(
+                  data-date=dateStr,
+                  data-count="0",
+                  title="",
+                  style="background: #f6f8fa; opacity: 0.3;"
+                )
+              - currentDate.setDate(currentDate.getDate() + 1)
+    
+    .calendar-legend
+      span 少
+      .legend-item(style="background: #ebedf0")
+      .legend-item(style="background: #9be9a8")
+      .legend-item(style="background: #40c463")
+      .legend-item(style="background: #30a14e") 
+      .legend-item(style="background: #216e39")
+      span 多
+
+  script.
+    document.addEventListener('DOMContentLoaded', function() {
+      const calendarDays = document.querySelectorAll('.calendar-day');
+      
+      calendarDays.forEach(day => {
+        day.addEventListener('mouseenter', function(e) {
+          const count = this.getAttribute('data-count');
+          if (count > 0) {
+            this.style.border = '1px solid #333';
+          }
+        });
+        
+        day.addEventListener('mouseleave', function() {
+          this.style.border = 'none';
+        });
+      });
+    });

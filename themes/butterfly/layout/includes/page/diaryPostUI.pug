@@ -1,0 +1,138 @@
+mixin diaryPostUI()
+  - const datetimeFormat = 'YYYY-MM-DD HH:mm:ss'
+  - const diaryPosts = site.posts.filter(post => post.diary).sort('-date')
+  - const indexLayout = theme.index_layout
+  - const masonryLayoutClass = (indexLayout === 6 || indexLayout === 7) ? 'masonry' : ''
+  
+  #recent-posts.recent-posts.diary-posts(class=masonryLayoutClass)
+    .diary-stats
+      i.fas.fa-book
+      span 共有 #{diaryPosts.length} 篇日记
+      if diaryPosts.length > 0
+        span(style="margin: 0 10px;") | 
+        i.fas.fa-clock
+        span 最新日记：#{date(diaryPosts.map(post => post.date)[0], datetimeFormat)}
+
+    .recent-post-items
+      if diaryPosts.length > 0
+        each article, index in diaryPosts.data
+          .recent-post-item.diary-item
+            - const link = article.link || article.path
+            - const title = article.title || _p('no_title')
+            - const leftOrRight = indexLayout === 3 ? (index % 2 === 0 ? 'left' : 'right') : (indexLayout === 2 ? 'right' : '')
+            - const post_cover = article.cover
+            - const no_cover = article.cover === false || !theme.cover.index_enable ? 'no-cover' : ''
+
+            if post_cover && theme.cover.index_enable
+              .post_cover(class=leftOrRight)
+                a(href=url_for(link) title=title)
+                  if article.cover_type === 'img'
+                    img.post-bg(src=url_for(post_cover) onerror=`this.onerror=null;this.src='${url_for(theme.error_img.post_page)}'` alt=title)
+                  else
+                    div.post-bg(style=`background: ${post_cover}`)
+
+            
+            - const authorName = article.author && article.author.name ? article.author.name : 'QBaymax'
+            - const authorAvatar = article.author && article.author.avatar ? article.author.avatar : '/img/profile.jpg'
+            - const plainText = strip_html(article.content)
+            - const wordCount = plainText.length
+
+            .diary-author
+              img.avatar(src=url_for(authorAvatar) alt=authorName)
+              .author-meta
+                span.author-name= authorName
+                span.author-time= date(article.date, datetimeFormat)
+              .author-word
+                span.author-word-count
+                  i.fas.fa-pen-nib(style="margin-right: 4px;")
+                  = `${wordCount} 字`
+
+                //- if article.tags.data.length > 0
+                //-   span.author-tags
+                //-     each item, index in article.tags.data
+                //-       a.tag(href=url_for(item.path)) #[=item.name]
+                //-       if index < article.tags.data.length - 1
+                //-         span.tag-separator #[='•']
+
+            //- .recent-post-info(class=no_cover)
+            if title !== "Untitled"
+              a.diary-title(href=url_for(link) title=title)
+                .title-meta
+                  i.fas.fa-book.diary-icon
+                  span.title-content= title
+
+            .diary-meta-wrap
+              //- if theme.post_meta.page.date_type
+              //-   span.post-meta-date
+              //-     if theme.post_meta.page.date_type === 'both'
+              //-       i.far.fa-calendar-alt
+              //-       time.post-meta-date-created(datetime=date_xml(article.date) title=_p('post.created') + ' ' + full_date(article.date))= date(article.date, datetimeFormat)
+              //-       span.article-meta-separator |
+              //-       i.fas.fa-history
+              //-       //- span.article-meta-label=_p('post.updated')
+              //-       time.post-meta-date-updated(datetime=date_xml(article.updated) title=_p('post.updated') + ' ' + full_date(article.updated))= date(article.updated, datetimeFormat)
+              //-     else
+              //-       - const data_type_updated = theme.post_meta.page.date_type === 'updated'
+              //-       - const date_type = data_type_updated ? 'updated' : 'date'
+              //-       - const date_icon = data_type_updated ? 'fas fa-history' : 'far fa-calendar-alt'
+              //-       - const date_title = data_type_updated ? _p('post.updated') : _p('post.created')
+              //-       i(class=date_icon)
+              //-       //- span.article-meta-label= date_title
+              //-       time(datetime=date_xml(article[date_type]) title=date_title + ' ' + full_date(article[date_type]))= date(article[date_type], datetimeFormat)
+              
+              if theme.post_meta.page.categories && article.categories.data.length > 0
+                span.article-meta
+                  each item, index in article.categories.data
+                    i.fas.fa-inbox
+                    a(href=url_for(item.path)).article-meta__categories #[=item.name]
+                    if index < article.categories.data.length - 1
+                      i.fas.fa-angle-right.article-meta-link
+              
+              if article.tags.data.length > 0
+                span.article-meta.tags
+                  span.article-meta-separator |
+                span.article-meta.tags
+                  each item, index in article.tags.data
+                    i.fas.fa-tag
+                    a(href=url_for(item.path)).article-meta__tags #[=item.name]
+                    if index < article.tags.data.length - 1
+                      span.article-meta-link #[='•']
+              
+              //- span.article-meta.diary-meta
+                //- span.article-meta-separator |
+                //- i.fas.fa-feather
+                //- span.article-meta-label 日记
+
+            //- 关键修改：内容显示部分
+            .content
+              //- 摘要部分 - 只显示纯文本预览
+              .content-excerpt
+                - let excerptText = article.excerpt || article.content
+                - excerptText = strip_html(excerptText)
+                - let excerptPreview = excerptText.substring(0, 100)
+                - if (excerptText.length > 100) excerptPreview += '...'
+                | !{excerptPreview}
+                
+              //- 完整内容部分 - 显示完整的HTML内容
+              .content-full(style="display: none;")
+                if article.excerpt
+                  //- 如果有手动摘要，显示完整内容
+                  | !{article.content}
+                else
+                  //- 如果没有手动摘要，直接显示内容
+                  | !{article.content}
+              
+            //- 阅读更多按钮
+            a.diary-read-more(href="javascript:void(0);" onclick="toggleDiaryReadMore(this)")
+              | 阅读更多 
+              i.fas.fa-chevron-down(style="margin-left: 5px;")
+
+      else
+        .recent-post-item.no-diary-item
+          .recent-post-info
+            i.fas.fa-book
+            h3 还没有日记
+            p 快去创建你的第一篇日记吧！
+            a.button(href="/admin") 写日记
+    
+    include ../pagination.pug
