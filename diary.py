@@ -17,6 +17,7 @@ title: {title}
 date: {datetime.now().strftime("%Y-%m-%d %H:%M:%S")}
 categories: [日记]
 tags: [{', '.join(tags)}]
+diary: true
 ---
 
 {content}

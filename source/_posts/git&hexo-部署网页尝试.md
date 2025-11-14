@@ -3,6 +3,7 @@ title: git&hexo-部署网页尝试
 date: 2025-11-14 17:50:00
 categories: [日记]
 tags: [学习,  hexo,  program, github]
+diary: true
 ---
 
 今天首先是修改了 hexo 构建网页的基本流程，之前就是通过`hexo d`构建网页，每次执行时，github.io 这个项目文件就会通过 deploy 重新构建网页，但这种手动构建的方法还是不通用。因此今天就研究了通过 **Github Actions** 来构建的方案，他是根据监测仓库是否有变化，从而自动去构建网页，因此我们可以直接改仓库中的 _post 来方便的上传日记，而不需要再手动让他 deploy。而 github.io 构建网页有且只能有一个途径，或者deploy，或者Actions。
