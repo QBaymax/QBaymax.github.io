@@ -39,11 +39,8 @@ mixin diaryCalendar()
   - startDate.setDate(startDate.getDate() - daysToAdjust)
   
   //- 确保起始日期是周日（GitHub日历从周日开始）
-  - const startDayOfWeek = startDate.getDay()
-  - console.log("Adjusted Start Date:", startDate.toISOString().split('T')[0])
-  - console.log("Start Day of Week:", startDayOfWeek)
-  - startDate.setDate(startDate.getDate() - startDayOfWeek + 0)
-  //- 这里存在加 0，因为测试发现通过自己电脑编译时周三对应的是 4, 所以需要加 1，而通过Github Action编译时周三对应的是 3，存在时区差异
+  - const startDayOfWeek = startDate.getUTCDay()  // 周日=0, 周一=1, ..., 周六=6
+  - startDate.setUTCDate(startDate.getUTCDate() - startDayOfWeek)
 
   //- 计算月份标签
   - const startMonth = startDate.getMonth() + 1
