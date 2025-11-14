@@ -8,7 +8,11 @@ def create_post(title, content, tags=None):
         tags = []
     
     # 生成文件名
-    filename = title.lower().replace(' ', '-') + '.md'
+    if title == "none":
+        ftitle = datetime.now().strftime("diary-%Y-%m-%d-%H%M%S")
+    else:
+        ftitle = datetime.now().strftime("diary-%Y-%m-%d-%H%M%S") + "-" + title
+    filename = ftitle.lower().replace(' ', '-') + '.md'
     filepath = os.path.join('source', '_posts', filename)
     
     # 构建文章内容
