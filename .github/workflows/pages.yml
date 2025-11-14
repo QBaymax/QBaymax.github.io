@@ -1,0 +1,56 @@
+name: Pages # 工作流的名称
+
+on:
+  push:
+    branches:
+      - main  # 这里是你的源码分支，通常是 main 或 master。当这个分支有推送时，触发Action。
+
+jobs:
+  build:
+    runs-on: ubuntu-latest # 在一个最新的Ubuntu系统上运行
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          # 如果你的主题使用了子模块，取消下面一行的注释
+          submodules: recursive
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          # 建议设置为你本地使用的Node.js主版本，例如20
+          node-version: "24"
+
+      - name: Cache NPM Dependencies
+        uses: actions/cache@v4
+        with:
+          path: node_modules
+          key: ${{ runner.OS }}-npm-cache-${{ hashFiles('package-lock.json') }}
+          restore-keys: |
+            ${{ runner.OS }}-npm-cache-
+
+      - name: Install Dependencies
+        run: npm install # 安装Hexo及插件
+
+      - name: Build Site
+        run: npm run build # 执行hexo generate，生成静态文件
+
+      - name: Upload Artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: ./public # 上传生成的public文件夹
+
+  deploy:
+    needs: build # 依赖于build任务
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4 # 使用官方部署Action
