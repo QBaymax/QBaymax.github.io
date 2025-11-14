@@ -220,6 +220,7 @@ template {
   -webkit-font-smoothing: antialiased;
 }
 .cardHover,
+.aboutlayout > div:first-child:not(.nc),
 .layout > div:first-child:not(.nc),
 #recent-posts .recent-post-item,
 .olayout > div:first-child:not(.nc),
@@ -237,6 +238,7 @@ template {
   border-radius: 8px;
 }
 .cardHover:hover,
+.aboutlayout > div:first-child:not(.nc):hover,
 .layout > div:first-child:not(.nc):hover,
 #recent-posts .recent-post-item:hover,
 .olayout > div:first-child:not(.nc):hover,
@@ -2174,6 +2176,126 @@ figure.highlight pre .javascript .function {
   white-space: nowrap;
   font-size: 12px;
   pointer-events: none;
+}
+#aboutbody-wrap {
+  display: -webkit-box;
+  display: -moz-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: box;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -moz-box-orient: vertical;
+  -o-box-orient: vertical;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -webkit-box-align: center;
+  -moz-box-align: center;
+  -o-box-align: center;
+  -ms-flex-align: center;
+  -webkit-align-items: center;
+  align-items: center;
+  min-height: 100vh;
+  background: url("/img/about_background.jpg");
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center center;
+}
+@supports (background: url("/img/about_background.webp")) {
+  #aboutbody-wrap {
+    background-image: url("/img/about_background.webp");
+  }
+}
+.aboutlayout {
+  display: -webkit-box;
+  display: -moz-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: box;
+  display: flex;
+  -webkit-box-flex: 1;
+  -moz-box-flex: 1;
+  -o-box-flex: 1;
+  box-flex: 1;
+  -webkit-flex: 1 auto;
+  -ms-flex: 1 auto;
+  flex: 1 auto;
+  margin: 0 0;
+  padding: 40px 40px;
+  max-width: 1200px;
+  width: 100%;
+  opacity: 0.8;
+  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=80)";
+  filter: alpha(opacity=80);
+}
+@media screen and (max-width: 900px) {
+  .aboutlayout {
+    -webkit-box-orient: vertical;
+    -moz-box-orient: vertical;
+    -o-box-orient: vertical;
+    -webkit-flex-direction: column;
+    -ms-flex-direction: column;
+    flex-direction: column;
+  }
+}
+@media screen and (max-width: 768px) {
+  .aboutlayout {
+    padding: 20px 5px;
+  }
+}
+@media screen and (min-width: 2000px) {
+  .aboutlayout {
+    max-width: 60%;
+  }
+}
+.aboutlayout > div:first-child:not(.nc) {
+  -webkit-align-self: flex-start;
+  align-self: flex-start;
+  -ms-flex-item-align: start;
+  padding: 50px 40px;
+}
+@media screen and (max-width: 768px) {
+  .aboutlayout > div:first-child:not(.nc) {
+    padding: 36px 14px;
+  }
+}
+.aboutlayout > div:first-child {
+  width: 74%;
+  -webkit-transition: all 0.3s;
+  -moz-transition: all 0.3s;
+  -o-transition: all 0.3s;
+  -ms-transition: all 0.3s;
+  transition: all 0.3s;
+}
+@media screen and (max-width: 900px) {
+  .aboutlayout > div:first-child {
+    width: 100% !important;
+  }
+}
+.aboutlayout.hide-aside {
+  max-width: 1000px;
+}
+@media screen and (min-width: 2000px) {
+  .aboutlayout.hide-aside {
+    max-width: 1300px;
+  }
+}
+.aboutlayout.hide-aside > div {
+  width: 100% !important;
+}
+.apple #page-header.full_page {
+  background-attachment: scroll !important;
+}
+.apple .recent-post-item,
+.apple .avatar-img,
+.apple .flink-item-icon {
+  -webkit-transform: translateZ(0);
+  -moz-transform: translateZ(0);
+  -o-transform: translateZ(0);
+  -ms-transform: translateZ(0);
+  transform: translateZ(0);
 }
 .article-sort {
   margin-left: 10px;
