@@ -9,7 +9,7 @@ description: '就像早晨八九点钟的太阳'
 keywords:
 author: 'QBaymax'
 language: EN
-timezone: ''
+timezone: 'Asia/Shanghai'
 
 # URL
 ## Set your site url here. For example, if you use GitHub Page, set url as 'https://username.github.io/project'
