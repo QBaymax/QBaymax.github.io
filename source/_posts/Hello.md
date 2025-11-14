@@ -3,6 +3,7 @@ title: 你好，我的第一篇博客
 date: 2025-11-10 20:11:18
 categories: 日记  # 将文章归入“日记”分类
 tags: [日常, 随笔]  # 为文章添加标签
+diary: true
 ---
 
 # 这是属于我QBaymax的专属网站
