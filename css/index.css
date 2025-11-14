@@ -2226,9 +2226,9 @@ figure.highlight pre .javascript .function {
   padding: 40px 40px;
   max-width: 1200px;
   width: 100%;
-  opacity: 0.8;
-  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=80)";
-  filter: alpha(opacity=80);
+  opacity: 0.9;
+  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=90)";
+  filter: alpha(opacity=90);
 }
 @media screen and (max-width: 900px) {
   .aboutlayout {
@@ -2530,9 +2530,9 @@ figure.highlight pre .javascript .function {
   padding: 40px 40px;
   max-width: 1200px;
   width: 100%;
-  opacity: 0.8;
-  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=80)";
-  filter: alpha(opacity=80);
+  opacity: 0.9;
+  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=90)";
+  filter: alpha(opacity=90);
 }
 @media screen and (max-width: 900px) {
   .layout {
@@ -2921,9 +2921,9 @@ figure.highlight pre .javascript .function {
   padding: 40px 40px;
   max-width: 1200px;
   width: 100%;
-  opacity: 0.8;
-  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=80)";
-  filter: alpha(opacity=80);
+  opacity: 0.9;
+  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=90)";
+  filter: alpha(opacity=90);
 }
 @media screen and (max-width: 900px) {
   .olayout {

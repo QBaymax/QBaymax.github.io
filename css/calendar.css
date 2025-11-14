@@ -58,7 +58,7 @@
   margin-bottom: 0.5rem;
   font-size: 0.8rem;
   color: #666;
-  padding-left: 40px; /* 为星期标签留出空间 */
+  padding-left: 16.2px; /* 为星期标签留出空间 */
   min-width: 795px; /* 53 * 15px */
 }
 
@@ -67,12 +67,17 @@
   top: 0;
 }
 
-.diary-calendar .calendar-wrapper {
+.diary-calendar .canvas {
+  display: flex;
+  flex-direction: row;
+}
+
+.canvas .calendar-wrapper {
   display: flex;
   width: max-content;
 }
 
-.diary-calendar .calendar-weekdays {
+.canvas .calendar-weekdays {
   display: flex;
   flex-direction: column;
   margin-right: 5px;
@@ -81,7 +86,7 @@
   width: 25px; /* 固定宽度 */
 }
 
-.diary-calendar .calendar-weekday {
+.canvas .calendar-weekday {
   height: 14px;
   margin: 0px 0;
   line-height: 15px;
@@ -89,7 +94,7 @@
 }
 
 /* 关键：按列排列的网格 */
-.diary-calendar .calendar-grid {
+.calendar-wrapper .calendar-grid {
   display: grid;
   grid-template-columns: repeat(53, 12px); /* 53列，每列12px */
   grid-template-rows: repeat(7, 12px); /* 7行，每行12px */
@@ -98,7 +103,7 @@
   width: max-content;
 }
 
-.diary-calendar .calendar-day {
+.calendar-wrapper .calendar-day {
   width: 12px;
   height: 12px;
   background: #ebedf0;
@@ -108,16 +113,16 @@
   transition: all 0.1s ease;
 }
 
-.diary-calendar .calendar-day:hover {
+.calendar-wrapper .calendar-day:hover {
   transform: scale(1.3);
   z-index: 10;
   border: 1px solid #333;
 }
 
-.diary-calendar .calendar-day[data-count="1"] { background: #9be9a8; }
-.diary-calendar .calendar-day[data-count="2"] { background: #40c463; }
-.diary-calendar .calendar-day[data-count="3"] { background: #30a14e; }
-.diary-calendar .calendar-day[data-count="4"] { background: #216e39; }
+.calendar-wrapper .calendar-day[data-count="1"] { background: #9be9a8; }
+.calendar-wrapper .calendar-day[data-count="2"] { background: #40c463; }
+.calendar-wrapper .calendar-day[data-count="3"] { background: #30a14e; }
+.calendar-wrapper .calendar-day[data-count="4"] { background: #216e39; }
 
 .diary-calendar .calendar-legend {
   display: flex;
