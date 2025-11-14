@@ -55,7 +55,7 @@ mixin diaryPostUI()
                 //-         span.tag-separator #[='•']
 
             //- .recent-post-info(class=no_cover)
-            if title !== "Untitled"
+            if title !== "none"
               a.diary-title(href=url_for(link) title=title)
                 .title-meta
                   i.fas.fa-book.diary-icon
