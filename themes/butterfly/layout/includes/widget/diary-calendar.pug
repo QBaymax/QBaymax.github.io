@@ -24,7 +24,8 @@ mixin diaryCalendar()
   - const startDayOfWeek = startDate.getDay()
   - console.log("Adjusted Start Date:", startDate.toISOString().split('T')[0])
   - console.log("Start Day of Week:", startDayOfWeek)
-  - startDate.setDate(startDate.getDate() - startDayOfWeek + 1)
+  - startDate.setDate(startDate.getDate() - startDayOfWeek + 0)
+  //- 这里存在加0，因为测试发现通过自己电脑编译时周三对应的是 4，而通过Github Action编译时周三对应的是3，存在时区差异
 
   //- 计算月份标签
   - const startMonth = startDate.getMonth() + 1
@@ -47,7 +48,8 @@ mixin diaryCalendar()
     .calendar-header
       h2 文章贡献日历
       .calendar-stats
-        span 总共 #{totalPosts} 篇文章，覆盖 #{Object.keys(postStats).length} 天
+        - console.log("Post Stats:", startDayOfWeek)
+        span 总共 #{totalPosts} 篇文章，覆盖 #{Object.keys(postStats).length} 天, Week #{startDayOfWeek}
     
     .calendar-scroll-container
       .calendar-months
