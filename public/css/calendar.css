@@ -123,6 +123,12 @@
 .calendar-wrapper .calendar-day[data-count="2"] { background: #40c463; }
 .calendar-wrapper .calendar-day[data-count="3"] { background: #30a14e; }
 .calendar-wrapper .calendar-day[data-count="4"] { background: #216e39; }
+.calendar-wrapper .calendar-day[data-count="5"] { background: #216e39; }
+.calendar-wrapper .calendar-day[data-count="6"] { background: #216e39; }
+.calendar-wrapper .calendar-day[data-count="7"] { background: #216e39; }
+.calendar-wrapper .calendar-day[data-count="8"] { background: #216e39; }
+.calendar-wrapper .calendar-day[data-count="9"] { background: #216e39; }
+.calendar-wrapper .calendar-day[data-count="10"] { background: #216e39; }
 
 .diary-calendar .calendar-legend {
   display: flex;
