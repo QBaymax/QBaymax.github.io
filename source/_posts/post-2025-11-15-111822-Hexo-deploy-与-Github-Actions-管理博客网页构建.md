@@ -57,7 +57,7 @@ hexo d → 读取 _config.yml 部署配置 → 执行对应的部署插件 → �
 
 首先，需要在 `_config.yml` 中配置部署信息
 
-```
+```yml
 # _config.yml
 deploy:
   type: git
@@ -79,14 +79,14 @@ deploy:
 
 4. 执行 Git 操作：
 
-   ```
-   # 插件在后台执行的类似命令
-   cd public
-   git init
-   git add .
-   git commit -m "Site updated: 2024-01-01 12:00:00"
-   git push -f https://github.com/your-username/your-username.github.io.git main
-   ```
+```bash
+# 插件在后台执行的类似命令
+cd public
+git init
+git add .
+git commit -m "Site updated: 2024-01-01 12:00:00"
+git push -f https://github.com/your-username/your-username.github.io.git main
+```
 
 5. 清理临时文件：删除临时 Git 仓库信息
 
@@ -143,7 +143,7 @@ GitHub Actions 允许你在仓库中直接创建自定义的自动化工作流�
 
 2. 推送本地源码：进入你本地的 Hexo 博客根目录，初始化 Git 并将其与刚创建的远程仓库关联，然后将所有文件推送上去。
 
-```
+```bash
 cd your-hexo-blog
 git init
 git remote add origin https://github.com/your-username/your-username.github.io
@@ -170,7 +170,7 @@ git push -u origin my-hexo-blog  # 假设你所创建的分支是 my-hexo-blog
 
 将以下 YAML 配置内容复制到 `pages.yml` 文件中。这个配置定义了自动化构建和部署的流程：
 
-```
+```yml
 name: Pages # 这个工作流的名称
 
 on:
