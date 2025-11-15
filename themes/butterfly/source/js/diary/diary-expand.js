@@ -51,7 +51,7 @@ function toggleDiaryReadMore(button) {
         // 平滑滚动
         window.scrollTo({
           top: targetScroll,
-          behavior: 'smooth'
+          behavior: 'auto'
         });
       }
     }, 300);
