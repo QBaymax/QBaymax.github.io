@@ -34,6 +34,7 @@ hexo g --debug  // debug 命令
 
 ```bash
 hexo server
+hexo s   // 简化命令
 ```
 
 在检查完毕后，即可将生成的静态网页代码上传到 Github 上，部署静态网页：
