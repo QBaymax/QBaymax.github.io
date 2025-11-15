@@ -830,8 +830,8 @@ beautify:
 font:
   global_font_size: 15px
   code_font_size: 13px
-  font_family:
-  code_font_family:
+  font_family: '"IBM Plex Sans", "IBM Plex Mono", Microsoft YaHei, sans-serif' # 全局默认字体
+  code_font_family: '"IBM Plex Sans", "IBM Plex Mono", Consolas, monospace' # 代码块的字体
 
 # Font settings for the site title and site subtitle
 blog_title_font:
@@ -1067,6 +1067,7 @@ assets:
 inject:
   head:
     # - <link rel="stylesheet" href="/xxx.css">
+    - <link rel="stylesheet" href="/css/custom-font.css">
     - <link rel="stylesheet" href="/css/diary.css">
     - <link rel="stylesheet" href="/css/calendar.css">
   bottom:
