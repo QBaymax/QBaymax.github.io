@@ -239,11 +239,11 @@ jobs:
 
 2. **提交**：使用 Git 或者使用可视化的 Github Desktop 软件将更改推送到 GitHub 源码仓库。
 
-   ```
-   git add .
-   git commit -m "发布新文章：《我的自动化博客之旅》"
-   git push origin my-hexo-blog
-   ```
+```bash
+git add .
+git commit -m "发布新文章：《我的自动化博客之旅》"
+git push origin my-hexo-blog
+```
 
 3. **自动化**：推送完成后，GitHub Actions 会自动开始工作。你可以在仓库的 "Actions" 标签页下实时查看构建日志。
 
