@@ -8,7 +8,7 @@ def create_post(title, content, tags=None):
         tags = []
     
     # 生成文件名
-    if title == "none":
+    if title == "diary":
         ftitle = datetime.now().strftime("diary-%Y-%m-%d-%H%M%S")
     else:
         ftitle = datetime.now().strftime("diary-%Y-%m-%d-%H%M%S") + "-" + title

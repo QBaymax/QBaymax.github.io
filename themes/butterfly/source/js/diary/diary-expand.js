@@ -27,7 +27,11 @@ function toggleDiaryReadMore(button) {
     initDiaryContent(fullContent);
     
   } else {
-    // 收起内容
+    // 保存当前滚动位置
+    const scrollY = window.scrollY;
+    const itemTop = diaryItem.getBoundingClientRect().top + scrollY;
+    
+    // 收起内容动画
     fullContent.style.opacity = '0';
     fullContent.style.transform = 'translateY(10px)';
     
@@ -35,58 +39,21 @@ function toggleDiaryReadMore(button) {
       excerpt.style.display = 'block';
       fullContent.style.display = 'none';
       button.innerHTML = '阅读更多 <i class="fas fa-chevron-down" style="margin-left: 5px;"></i>';
+      
+      // 检查是否需要滚动
+      const currentRect = diaryItem.getBoundingClientRect();
+      const isOutOfView = currentRect.top < 0 || currentRect.bottom < window.innerHeight * 0.3;
+      
+      if (isOutOfView) {
+        // 计算目标滚动位置（元素顶部 - 一些边距）
+        const targetScroll = itemTop - 20; // 20px 边距
+        
+        // 平滑滚动
+        window.scrollTo({
+          top: targetScroll,
+          behavior: 'smooth'
+        });
+      }
     }, 300);
   }
 }
-
-// 初始化日记内容中的特殊元素
-function initDiaryContent(container) {
-  // 处理代码块高亮
-  const codeBlocks = container.querySelectorAll('pre code');
-  codeBlocks.forEach(block => {
-    if (typeof hljs !== 'undefined') {
-      hljs.highlightElement(block);
-    }
-  });
-  
-  // 处理图片懒加载
-  const images = container.querySelectorAll('img');
-  images.forEach(img => {
-    if (!img.loading) {
-      img.loading = 'lazy';
-    }
-    // 确保图片样式正确
-    if (!img.style.maxWidth) {
-      img.style.maxWidth = '100%';
-      img.style.height = 'auto';
-    }
-  });
-  
-  // 处理表格响应式
-  const tables = container.querySelectorAll('table');
-  tables.forEach(table => {
-    if (!table.parentElement.classList.contains('table-container')) {
-      const wrapper = document.createElement('div');
-      wrapper.className = 'table-container';
-      wrapper.style.overflowX = 'auto';
-      table.parentNode.insertBefore(wrapper, table);
-      wrapper.appendChild(table);
-    }
-  });
-}
-
-// 页面加载完成后初始化
-document.addEventListener('DOMContentLoaded', function() {
-  // 为所有日记内容预初始化
-  const diaryContents = document.querySelectorAll('.content-full');
-  diaryContents.forEach(content => {
-    initDiaryContent(content);
-  });
-});
-
-// 处理图片加载错误
-document.addEventListener('error', function(e) {
-  if (e.target.tagName === 'IMG' && e.target.closest('.diary-item')) {
-    e.target.src = '/images/error-image.png'; // 替换为您的错误图片路径
-  }
-}, true);
