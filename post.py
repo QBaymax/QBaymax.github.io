@@ -1,5 +1,5 @@
+# %%
 # create-post.py
-import sys
 import os
 from datetime import datetime
 
@@ -30,20 +30,42 @@ tags: [{', '.join(tags)}]
     print('✅ 文章已创建:', filepath)
     print('📝 内容预览:')
     print('---')
-    preview_lines = content.split('\n')[:3]
+    preview_lines = content.split('\n')[:5]  # 显示前5行
     for line in preview_lines:
         print(line)
-    print('...')
+    if len(content.split('\n')) > 5:
+        print('...')
+
+def get_multiline_input(prompt):
+    """获取多行输入，以空行结束"""
+    print(prompt)
+    print("请输入内容（输入空行结束）:")
+    lines = []
+    while True:
+        try:
+            line = input()
+            if line == '':
+                break
+            lines.append(line)
+        except EOFError:
+            break
+    return '\n'.join(lines)
 
 if __name__ == "__main__":
-    if len(sys.argv) < 3:
-        print('Usage: python diary.py "标题" "内容" [标签]')
-        print('Example: python diary.py "我的日记" "今天很开心" "日常,心情"')
-        print('Example: python diary.py "学习笔记" "学习了Python编程" "编程,学习"')
-        sys.exit(1)
+    print("📝 Hexo 文章创建工具")
+    print("=" * 30)
     
-    title = sys.argv[1]
-    content = sys.argv[2]
-    tags = sys.argv[3].split(',') if len(sys.argv) > 3 else []
+    # 获取标题
+    title = input("请输入文章标题: ").strip()
+    if not title:
+        print("❌ 标题不能为空")
+        exit(1)
+    
+    # 获取内容（多行）
+    content = get_multiline_input("")
+    
+    # 获取标签
+    tags_input = input("请输入标签（用逗号分隔，直接回车跳过）: ").strip()
+    tags = [tag.strip() for tag in tags_input.split(',')] if tags_input else []
     
     create_post(title, content, tags)
