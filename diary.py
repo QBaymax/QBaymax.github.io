@@ -15,6 +15,10 @@ def create_post(title, content, tags=None):
     filename = ftitle.lower().replace(' ', '-') + '.md'
     filepath = os.path.join('source', '_posts', filename)
     
+    # 创建同名文件夹
+    folder_name = ftitle.lower().replace(' ', '-')
+    folder_path = os.path.join('source', '_posts', folder_name)
+    
     # 构建文章内容
     post_content = f"""---
 title: {title}
@@ -26,6 +30,13 @@ diary: true
 
 {content}
 """
+    
+    # 创建同名文件夹
+    try:
+        os.makedirs(folder_path, exist_ok=True)
+        print('✅ 文件夹已创建:', folder_path)
+    except Exception as e:
+        print('❌ 文件夹创建失败:', e)
     
     # 使用UTF-8编码写入文件
     with open(filepath, 'w', encoding='utf-8') as f:
