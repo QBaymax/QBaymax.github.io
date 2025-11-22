@@ -4,7 +4,13 @@ mixin articleSort(posts)
     - posts.forEach(article => {
       - const tempYear = date(article.date, 'YYYY')
       - const noCoverClass = article.cover === false || !theme.cover.archives_enable ? 'no-article-cover' : ''
-      - const title = article.title || _p('no_title')
+      - let title = article.title || _p('no_title')
+      //- 如果标题是"diary"，则取内容的前10个字
+      - if (title === 'diary' && article.content) {
+      -   // 移除Markdown标记和HTML标签，然后截取前10个字
+      -   const plainText = article.content.replace(/[#*`\[\]\(\)]|!\[.*?\]\(.*?\)/g, '').replace(/<[^>]*>/g, '')
+      -   title = plainText.substring(0, 10) + (plainText.length > 10 ? '...' : '')
+      - }
       if tempYear !== year
         - year = tempYear
         .article-sort-item.year= year
