@@ -297,7 +297,7 @@ aside:
       link: https://github.com/QBaymax
   card_announcement:
     enable: true
-    content: 感谢<a href="https://962039170.github.io/">柴某</a>的支持
+    content: 感谢<a href="https://linzhujia.github.io//">柴某</a>的支持
   card_recent_post:
     enable: true
     # If set 0 will show all
