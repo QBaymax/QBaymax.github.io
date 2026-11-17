@@ -1,0 +1,7 @@
+menu:
+  首页: / || fas fas fa-home
+  分类: /categories/ || fas fa-folder-open
+  时间轴: /archives/ || fas fa-archive
+  标签: /tags/ || fas fa-tags
+  友情链接: /link/ || fas fa-link
+  关于我: /about/ || fas fa-heart

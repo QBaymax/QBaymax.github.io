@@ -1,0 +1,29 @@
+mixin articleSort(posts)
+  .article-sort
+    - let year
+    - posts.forEach(article => {
+      - const tempYear = date(article.date, 'YYYY')
+      - const noCoverClass = article.cover === false || !theme.cover.archives_enable ? 'no-article-cover' : ''
+      - let title = article.title || _p('no_title')
+      //- 如果标题是"diary"，则取内容的前10个字
+      - if (title === 'diary' && article.content) {
+      -   // 移除Markdown标记和HTML标签，然后截取前10个字
+      -   const plainText = article.content.replace(/[#*`\[\]\(\)]|!\[.*?\]\(.*?\)/g, '').replace(/<[^>]*>/g, '')
+      -   title = plainText.substring(0, 10) + (plainText.length > 10 ? '...' : '')
+      - }
+      if tempYear !== year
+        - year = tempYear
+        .article-sort-item.year= year
+      .article-sort-item(class=noCoverClass)
+        if article.cover && theme.cover.archives_enable
+          a.article-sort-item-img(href=url_for(article.path) title=title)
+            if article.cover_type === 'img'
+              img(src=url_for(article.cover) alt=title onerror=`this.onerror=null;this.src='${url_for(theme.error_img.post_page)}'`)
+            else
+              div(style=`background: ${article.cover}`)
+        .article-sort-item-info
+          .article-sort-item-time
+            i.far.fa-calendar-alt
+            time.post-meta-date-created(datetime=date_xml(article.date) title=_p('post.created') + ' ' + full_date(article.date))= date(article.date, config.date_format)
+          a.article-sort-item-title(href=url_for(article.path) title=title)= title
+    - })

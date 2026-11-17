@@ -1,0 +1,73 @@
+#aboutbody-wrap
+  display: flex
+  flex-direction: column
+  align-items: center;
+  min-height: 100vh
+  background: url(/img/about_background.jpg)
+  background-attachment: fixed
+  background-repeat: no-repeat
+  background-size: cover
+  background-position: center center
+
+@supports (background: url(/img/about_background.webp))
+  #aboutbody-wrap
+    background-image: url(/img/about_background.webp)
+
+.aboutlayout
+  display: flex
+  flex: 1 auto
+  margin: 0 0
+  padding: 40px 40px
+  max-width: 1200px
+  width: 100%
+  opacity: 0.9
+
+  +maxWidth900()
+    flex-direction: column
+
+  +maxWidth768()
+    padding: 20px 5px
+
+  +minWidth2000()
+    max-width: 60%
+
+  & > div:first-child:not(.nc)
+    @extend .cardHover
+    align-self: flex-start
+    padding: 50px 40px
+    // background: var(--highlight-bg)
+    // opacity: 0.6
+
+    +maxWidth768()
+      padding: 36px 14px
+
+  & > div:first-child
+    width: 74%
+    transition: all .3s
+
+    +maxWidth900()
+      width: 100% !important
+
+    if hexo-config('aside.position') == 'left'
+      +minWidth900()
+        order: 2
+
+  // 隱藏aside
+  &.hide-aside
+    max-width: 1000px
+
+    +minWidth2000()
+      max-width: 1300px
+
+    & > div
+      width: 100% !important
+
+// for apple device
+.apple
+  #page-header.full_page
+    background-attachment: scroll !important
+
+  .recent-post-item,
+  .avatar-img,
+  .flink-item-icon
+    transform: translateZ(0)

@@ -1,0 +1,54 @@
+name: Pages # 这个工作流的名称
+
+on:
+  push:
+    branches:
+      - main  # 指定当推送到 'main' 分支时触发此工作流
+
+jobs:
+  build: # 定义一个名为 build 的任务
+    runs-on: ubuntu-24.04 # 在最新的 Ubuntu 系统上运行
+    steps:
+      - name: Checkout # 步骤1：拉取仓库代码
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          submodules: recursive  # 如果主题是子模块，递归拉取
+
+      - name: Setup Node.js # 步骤2：设置 Node.js 环境
+        uses: actions/setup-node@v4
+        with:
+          node-version: "18" # 请确保此版本与你本地使用的 Node.js 主要版本兼容
+
+      - name: Setup npm cache # 步骤3：缓存 npm 依赖，加速后续构建
+        uses: actions/cache@v4
+        with:
+          path: node_modules
+          key: ${{ runner.OS }}-npm-cache-${{ hashFiles('package-lock.json') }}
+          restore-keys: |
+            ${{ runner.OS }}-npm-cache-
+
+      - name: Install dependencies # 步骤4：安装项目依赖
+        run: npm install
+
+      - name: Build # 步骤5：执行 hexo generate 生成静态文件
+        run: npm run build # 或直接运行 `npx hexo generate`
+
+      - name: Upload artifact # 步骤6：将生成的 public 目录打包
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: ./public
+
+  deploy: # 定义一个名为 deploy 的任务
+    needs: build # 它依赖于 build 任务的成功完成
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-24.04
+    steps:
+      - name: Deploy to GitHub Pages # 部署到 GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4

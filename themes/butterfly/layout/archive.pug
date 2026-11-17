@@ -1,0 +1,10 @@
+extends includes/olayout.pug
+
+block content
+  include ./includes/mixins/article-sort.pug
+  include ./includes/widget/diary-calendar.pug
+  #archive
+    +diaryCalendar()
+    .article-sort-title= `${_p('page.articles')} - ${getArchiveLength()}`
+    +articleSort(page.posts)
+    include includes/pagination.pug
